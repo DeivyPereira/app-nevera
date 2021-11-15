@@ -1,0 +1,193 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Agregar orden de trabajo</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content style="background-color: #f8f8f8;">
+	<ion-row>
+		<ion-col col-12 no-padding>
+			<p class="title-order" color="primary">Tipo de Trabajo</p>
+		</ion-col>
+	</ion-row>
+	<ion-list>
+		<ion-item *ngIf="!addOrder.type">
+			Tipo <ion-icon name="add-circle" item-end on-click="showType()"></ion-icon>
+		</ion-item>
+		<ion-item *ngIf="addOrder.type">
+			{{addOrder.type}} <ion-icon name="remove-circle" item-end on-click="showType()"></ion-icon>
+		</ion-item>
+	</ion-list>
+	<div *ngIf="!pre_order_id">
+		<ion-row>
+			<ion-col col-12 no-padding>
+				<p class="title-order" color="primary">Punto - Cliente</p>
+			</ion-col>
+		</ion-row>
+		<ion-list>
+			<ion-item>
+				<p class="key-order">Cliente</p>
+				<ion-icon name="add-circle" item-end on-click="showClient()" *ngIf="listClients"></ion-icon>
+			</ion-item>
+			<ion-item *ngIf="addOrder.client">
+				<p class="key-order">{{addOrder.client}}</p>
+				<ion-icon name="search" item-end on-click="searchClient()"></ion-icon>
+				<ion-icon name="qr-scanner" item-end></ion-icon>
+			</ion-item>
+			<ion-item *ngIf="addOrder.point">
+				<p class="key-order">Identificador</p>
+				<p class="value-order">{{addOrder.point}}</p>
+			</ion-item>
+			<ion-item *ngIf="clientData">
+				<p class="key-order">Dirección</p>
+				<p class="value-order">{{clientData.direction}}</p>
+			</ion-item>
+			<ion-item *ngIf="clientData">
+				<p class="key-order">Distrito</p>
+				<p class="value-order">{{clientData.district}}</p>
+			</ion-item>
+			<ion-item *ngIf="clientData">
+				<p class="key-order">Provincia</p>
+				<p class="value-order">{{clientData.province}}</p>
+			</ion-item>
+		</ion-list>
+	</div>
+	<div *ngIf="pre_order_id && listPreordenWithId">
+		<ion-row>
+			<ion-col col-12 no-padding>
+				<p class="title-order" color="primary">Punto - Cliente</p>
+			</ion-col>
+		</ion-row>
+		<ion-list>
+			<ion-item>
+				<p class="key-order">Cliente</p>
+				<p class="key-order">{{listPreordenWithId.company.name}}</p>
+			</ion-item>
+			<ion-item>
+				<p class="key-order">Identificador</p>
+				<p class="value-order">{{listPreordenWithId.point}}</p>
+			</ion-item>
+			<ion-item>
+				<p class="key-order">Dirección</p>
+				<p class="value-order">{{listPreordenWithId.clientData.direction}}</p>
+			</ion-item>
+			<ion-item>
+				<p class="key-order">Distrito</p>
+				<p class="value-order">{{listPreordenWithId.clientData.district}}</p>
+			</ion-item>
+			<ion-item>
+				<p class="key-order">Provincia</p>
+				<p class="value-order">{{listPreordenWithId.clientData.province}}</p>
+			</ion-item>
+		</ion-list>
+	</div>
+	<ion-row *ngIf="pre_order_id">
+		<ion-col col-12 no-padding>
+			<p class="title-order" color="primary">Tareas Asiganadas</p>
+		</ion-col>
+	</ion-row>
+	<ion-item *ngFor="let item of listTasks">
+		<ion-label><button float-right clear ion-button icon-only color="dark" on-click="showDetails(item.id)">
+				<ion-icon name="eye"></ion-icon>
+			</button>{{item.title}}</ion-label>
+		<ion-checkbox [(ngModel)]="item.checkbox">{{item.title}}</ion-checkbox>
+	</ion-item>
+	<ion-row>
+		<ion-col col-12 no-padding>
+			<p class="title-order" color="primary">Agrega nuevas tareas</p>
+		</ion-col>
+	</ion-row>
+	<ion-list>
+		<ion-item>
+			<p class="key-order">Nueva Tarea</p>
+			<ion-icon name="add-circle" item-end on-click="showTasks()"></ion-icon>
+		</ion-item>
+		<ion-item *ngFor="let item of addOrder.taks; let i = index ">
+			<p class="key-order">{{ item.title }}</p>
+			<ion-icon name="remove-circle" item-end on-click="removeTasks(i)"></ion-icon>
+		</ion-item>
+	</ion-list>
+	<ion-row>
+		<ion-col col-12 no-padding>
+			<p class="title-order" color="primary">Incidencias</p>
+		</ion-col>
+	</ion-row>
+	<ion-list>
+		<ion-item>
+			<p class="key-order">Nueva Incidencia</p>
+			<ion-icon name="add-circle" item-end on-click="showIncidents()"></ion-icon>
+		</ion-item>
+		<ion-item *ngFor="let item of addOrder.incidents; let i = index">
+			<p class="key-order">{{ item.title }}</p>
+			<ion-icon name="remove-circle" item-end on-click="removeIncidents(i)"></ion-icon>
+		</ion-item>
+	</ion-list>
+	<ion-row *ngIf="addOrder.point !== ''">
+		<ion-col col-12 no-padding>
+			<p class="title-order" color="primary">Materiales</p>
+		</ion-col>
+	</ion-row>
+	<ion-list *ngIf="addOrder.point !== '' || pre_order_id">
+		<div *ngIf="pre_order_id">
+			<ion-item>
+				<p class="key-order">Productos Asignados</p>
+			</ion-item>
+			<ion-item *ngFor="let item of productsNow; let i = index">
+				<p class="key-order">{{item.name}}</p>
+				<p class="value-order">Cantidad: {{item.qty}}</p>
+				<ion-icon name="eye" item-end class="icon-small-order icon-blue"
+					on-click="showImg(item.name,item.path)">
+				</ion-icon>
+				<ion-icon name="remove-circle" item-end class="icon-small-order icon-brown"
+					on-click="removeProductsNow(i)">
+				</ion-icon>
+			</ion-item>
+		</div>
+		<ion-item>
+			<p class="key-order">Agregar Productos</p>
+			<ion-icon name="search" item-end on-click="showProducts()"></ion-icon>
+			<ion-icon name="qr-scanner" item-end></ion-icon>
+		</ion-item>
+		<ion-item *ngFor="let item of addOrder.products; let i = index">
+			<p class="key-order">{{item.name}}</p>
+			<p class="value-order">Cantidad: {{item.qty}}</p>
+			<ion-icon name="eye" item-end class="icon-small-order icon-blue" on-click="showImg(item.name,item.path)">
+			</ion-icon>
+			<ion-icon name="remove-circle" item-end class="icon-small-order icon-brown" on-click="removeProducts(i)">
+			</ion-icon>
+		</ion-item>
+	</ion-list>
+
+	<ion-row>
+		<ion-col col-12 no-padding>
+			<p class="title-order" color="primary">Observaciones</p>
+		</ion-col>
+		<ion-list>
+			<ion-item>
+				<ion-textarea [(ngModel)]="addOrder.observations" rows="4" cols="50" placeholder="Agregar observaciones"
+					value="" disabled="false"></ion-textarea>
+			</ion-item>
+		</ion-list>
+	</ion-row>
+
+	<ion-item>
+		<button ion-button color="royal" on-click="presentActionSheet()" full icon-end>
+			Agregar Fotografias
+			<ion-icon name="camera"></ion-icon>
+		</button>
+	</ion-item>
+
+	<ion-slides *ngIf="imagenes.length != 0">
+		<ion-slide *ngFor="let item of imagenes; let i = index">
+			<img src={{item.img}} alt="">
+			<button on-click="deleteFieldValue(i)" ion-button color="danger" block>
+				<ion-icon name="trash"></ion-icon>
+			</button>
+		</ion-slide>
+	</ion-slides>
+
+
+	<button ion-button icon-only color="royal" on-click="save()" full>
+		Guardar
+	</button>
+
+</ion-content>

@@ -1,0 +1,37 @@
+page-configuration {
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+    .frameBackground{
+        background-color: #7a7a7a17;
+        position: absolute;
+        bottom: 0px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        width: 100%;
+    }
+    .frame-container{
+        position: relative;
+    }
+    .frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      margin-top: -200px;
+      margin-left: -200px;
+      border-radius: 2px;
+      overflow: hidden;
+      color: #7a7a7a;
+      font-family: "Open Sans", Helvetica, sans-serif;
+      line-height: 130%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .centerDiv{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5vh;
+    }
+    
+}

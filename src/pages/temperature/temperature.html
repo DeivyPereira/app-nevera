@@ -1,0 +1,64 @@
+<!--
+  Generated template for the TemperaturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Temperatura General</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="frameBackground" padding>
+    <div class="frame-container" >
+      <div>
+        <strong>Temperatura</strong>
+        <p>Control de Temperatura</p>
+      </div>
+      <div class="frame">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="indicator" [ngStyle]="{'transform': 'rotate(' + indicatorVal + 'deg)'}" ></div>
+            <div class="temp_outside" >25°</div>
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureActual}}<span>°</span></div>
+            <div class="temp_room two"  [ngClass]="{'activeTherTwo' : temperature1}" >{{temperatureActual}}<span>°</span></div>
+            <div class="room">Ambiente</div>
+          </div>
+          <div class="divController">
+            <div class="buttonController" on-click="goToRest()">-</div>
+            <div class="buttonController" on-click="goToSum()">+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-row>
+      <ion-col col-12>
+        <p>Botones Rapidos</p>
+      </ion-col>
+      <ion-col col-4>
+        <div class="container-grid"  [ngClass]="{'active' : buttonToggle}" on-click="goToToggle()">
+          <i class="fas fa-toggle-on"></i>
+          <p><strong>{{textToggle}}</strong></p>
+          <p><small>Apagar/Prender</small></p>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div class="container-grid"  [ngClass]="{'active' : buttonConfiguration}" on-click="goToConfigure()"> 
+          <i class="fas fa-toggle-on"></i>
+          <p><small>Configuración Automatizado</small></p>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div class="container-grid"  [ngClass]="{'active' : buttonHistory}" on-click="goToHistory()"> 
+          <i class="fas fa-toggle-on"></i>
+          <p><small>Historial de Temperatura</small></p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

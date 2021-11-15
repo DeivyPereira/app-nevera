@@ -1,0 +1,109 @@
+<!--
+  Generated template for the TemperaturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Temperatura Sensores  PT100</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="frameBackground" padding>
+    <div class="frame-container" >
+      <div>
+        <strong>Sensores</strong>
+      </div>
+      <div class="frame" style="top:30%; left: 25%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp1}}<span>°</span></div>
+            <div class="room">PT100 (1)</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame" style="top:30%; left: 80%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp2}}<span>°</span></div>
+            <div class="room">PT100 (2)</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame" style="top:60%; left: 25%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp3}}<span>°</span></div>
+            <div class="room">PT100 (3)</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame" style="top:60%; left: 80%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp4}}<span>°</span></div>
+            <div class="room">PT100 (4)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="frame" style="top:90%; left: 25%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp5}}<span>°</span></div>
+            <div class="room">PT100 (5)</div>
+          </div>
+        </div>
+      </div>
+      <div class="frame" style="top:90%; left: 80%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp6}}<span>°</span></div>
+            <div class="room">PT100 (6)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-row>
+      <ion-col col-4>
+        <div class="container-grid"  [ngClass]="{'active' : buttonToggle}" on-click="goToToggle()">
+          <i class="fas fa-toggle-on"></i>
+          <p><strong>{{textToggle}}</strong></p>
+          <p><small>Apagar/Prender</small></p>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div class="container-grid"  [ngClass]="{'active' : buttonConfiguration}" on-click="goToConfigure()"> 
+          <i class="fas fa-toggle-on"></i>
+          <p><small>Configuración Automatizado</small></p>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div class="container-grid"  [ngClass]="{'active' : buttonHistory}" on-click="goToHistory()"> 
+          <i class="fas fa-toggle-on"></i>
+          <p><small>Historial de Temperatura</small></p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

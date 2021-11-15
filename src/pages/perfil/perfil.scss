@@ -1,0 +1,22 @@
+page-perfil {
+ .sliderButtonsSpeed{
+	height:2vw;
+	
+	.swiper-pagination-bullets{
+		left: 0;
+		bottom: 0px;
+		width: 100%;
+	}
+	.swiper-pagination{
+		text-align: center;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+		position: absolute;
+		z-index: 10;
+		-webkit-transition: 300ms;
+		transition: 300ms;
+		pointer-events: none;
+		bottom: 20px !important;
+	}
+ }
+}

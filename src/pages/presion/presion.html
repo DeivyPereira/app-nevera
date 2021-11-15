@@ -1,0 +1,50 @@
+<!--
+  Generated template for the TemperaturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Sensores Presión</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="frameBackground" padding>
+    <div class="frame-container" >
+      <div>
+        <strong>Presión</strong>
+      </div>
+      <div class="frame" style="top:30%; left: 25%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp1}}<span>°</span></div>
+            <div class="room">Sensor Evaporador </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame" style="top:80%; left: 25%;">
+        <div class="thermostat" >
+          <div class="ring">
+            <div class="bottom_overlay"></div>
+          </div>
+          <div class="control">
+            <div class="temp_room" [ngClass]="{'activeTher' : temperature1}" >{{temperatureTp2}}<span>°</span></div>
+            <div class="room">Sensor Compresor</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position: absolute;  left: 60%; bottom: 63%;">
+        <input type="checkbox" id="switch" [checked]="buttonToggle" on-click="goToToggle()" /><label for="switch">Toggle</label>
+      </div>
+      <div style="position: absolute;  left: 60%; bottom: 15%;">
+        <input type="checkbox" id="switch2" [checked]="buttonToggle2" on-click="goToToggle2()" /><label for="switch2" >Toggle</label>
+      </div>
+    </div>
+  </div>
+</ion-content>

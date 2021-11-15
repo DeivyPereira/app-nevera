@@ -1,0 +1,44 @@
+<!--
+  Generated template for the PreOrdenPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Solicitudes</ion-title>
+    <ion-buttons end>
+      <button float-right clear ion-button icon-only color="dark" on-click="showFilter()">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of listPreOrden" (click)="showPreOrdenDetails(item.id)">
+      <ion-row *ngIf="item.status">
+        <ion-col> <div></div> </ion-col>
+        <ion-col *ngIf="item.status == 1" style="background-color: yellow;"></ion-col>
+        <ion-col *ngIf="item.status == 2" style="background-color: steelblue;"></ion-col>
+        <ion-col *ngIf="item.status == 3" style="background-color: blue;"></ion-col>
+        <ion-col *ngIf="item.status == 4" style="background-color: green;"></ion-col>
+        <ion-col *ngIf="item.status == 5" style="background-color: gray;"></ion-col>
+        <ion-col *ngIf="item.status == 6" style="background-color: purple;"></ion-col>
+        <ion-col *ngIf="item.status == 7" style="background-color: red;"></ion-col>
+        <ion-col col-11> 
+          <h3>Creado: {{item.userData.name}}</h3>
+          <h3 *ngIf="item.userDataEmployee">Asignado: {{item.userDataEmployee.name}}</h3>
+          <h3>{{item.companyData[0].name}}</h3> 
+          <h3>{{item.clientData.name}}</h3>   
+          <p *ngIf="item.dateStar != '0000-00-00'">Fecha de Solicitud: {{item.dateStar}}</p>
+          <p *ngIf="item.dateEnd  != '0000-00-00'">Fecha de Entrega: {{item.dateEnd}}</p>
+          <p *ngIf="item.dateFinal  != '0000-00-00'">Fecha de Finalización: {{item.dateFinal}}</p>
+          <p>{{this.setStatus(item.status)}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>        
+  </ion-list>
+</ion-content>
